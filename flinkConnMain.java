@@ -11,7 +11,7 @@ public class flinkConnMain {
 
         DataStream<String> dataStream = env.addSource(new natsConnector());
         DataStream<Tuple2<String,Integer>> data= dataStream
-                .flatMap(new flinkReadTextFile.splitter())
+                .flatMap(new flinkConnMain.splitter())
                 .keyBy(value->value.f0)
                 .sum(1);
 
